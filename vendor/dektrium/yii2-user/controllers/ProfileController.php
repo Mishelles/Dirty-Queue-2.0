@@ -15,6 +15,7 @@ use dektrium\user\Finder;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use Yii;
 
 /**
  * ProfileController shows users profiles.
@@ -34,6 +35,17 @@ class ProfileController extends Controller
      * @param Finder           $finder
      * @param array            $config
      */
+    public $jsFile;
+    public function init() {
+            parent::init();
+            $this->jsFile = '@frontend/views/ajax/ajax.js';
+            // Publish and register the required JS file
+            Yii::$app->assetManager->publish($this->jsFile);
+            $this->getView()->registerJsFile(
+                    Yii::$app->assetManager->getPublishedUrl($this->jsFile),
+                    ['yii\web\YiiAsset'] // depends
+            );
+    }
     public function __construct($id, $module, Finder $finder, $config = [])
     {
         $this->finder = $finder;

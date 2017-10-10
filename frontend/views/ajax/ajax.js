@@ -44,6 +44,10 @@ var ajaxCallbacks = {
 
 	'linkFormDone': function (response) {
 		$('#ajax_result_02').html(response.body);
-	}
+	},
+
+        'actionDone': function (response) {
+                $('#status_' + response.id).html(response.status);
+        }
 
 }

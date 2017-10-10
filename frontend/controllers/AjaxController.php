@@ -41,4 +41,38 @@ class AjaxController extends Controller //BaseController
 			return $res;
 		}
 	}
+        public function actionAction($id, $status) {
+                if (Yii::$app->request->isAjax && Yii::$app->user->id>0) {
+                        $rows = (new \yii\db\Query())
+                        ->select(['id'])
+                        ->from('users_work_status')
+                        ->where(['=', 'id_user', Yii::$app->user->id])
+                        ->andWhere(['=', 'id_work', $id])
+                        ->limit(1)
+                        ->all();
+                        $connection = new \yii\db\Connection([
+                            'dsn' => Yii::$app->db->dsn,
+                            'username' => Yii::$app->db->username,
+                            'password' => Yii::$app->db->password,
+                        ]);
+                        $connection->open();
+
+                        if(!empty($rows)){
+                            $connection->createCommand()
+                            ->update('users_work_status', ['status' => $status], 'id = ' . $rows[0]['id'])
+                            ->execute();
+                        }else{
+                            $connection->createCommand()
+                            ->insert('users_work_status', ['id_user' => Yii::$app->user->id, 'id_work' => $id, 'status' => $status])
+                            ->execute();
+                        }
+                        Yii::$app->response->format = Response::FORMAT_JSON;
+                        $res = array(
+                                'id'      => $id,
+                                'status'  => $status,
+                                'success' => true,
+                        );
+                        return $res;
+                }
+        }
 }

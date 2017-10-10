@@ -87,9 +87,25 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
 	if($key!==FALSE){
             $status=$user_works[$key]['status'];
         }
-        echo '<tr id="' . $work['id'] . '"><td>' . $work['subject'] . '</td><td>' . $work['name'] . ' ' . $work['number'] . '</td><td>' . $status . '</td>';
+        echo '<tr><td>' . $work['subject'] . '</td><td>' . $work['name'] . ' ' . $work['number'] . '</td><td id="status_' . $work['id'] . '">' . $status . '</td>';
         if(Yii::$app->user->id==$profile->user->id){
-            echo '<td><button type="button" class="btn btn-warning td-button">Ready</button><button type="button" class="btn btn-success td-button">Done</button></td></tr>';
+            echo '<td>';
+            echo Html::a('Ready', ['/ajax/action?id=' . $work['id'] . '&status=1'], [
+                            'class' => 'btn btn-primary td-button',
+                            'id' => 'ready_' . $work['id'],
+                            'data-on-done' => 'actionDone',
+                    ]
+            );
+            $this->registerJs("$('#ready_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);
+            echo Html::a('Done', ['/ajax/action?id=' . $work['id'] . '&status=2'], [
+                            'class' => 'btn btn-success td-button',
+                            'id' => 'done_' . $work['id'],
+                            'data-on-done' => 'actionDone',
+                    ]
+            );
+            $this->registerJs("$('#done_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);
+            echo '</td></tr>';
+            //echo '<td><button type="button" class="btn btn-warning td-button">Ready</button><button type="button" class="btn btn-success td-button">Done</button></td></tr>';
         }else{
             echo "<td>Can't edit</td></tr>";
         }

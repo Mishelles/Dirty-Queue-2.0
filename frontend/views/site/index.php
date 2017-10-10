@@ -14,7 +14,6 @@ $this->title = Yii::$app->name;
        <p><a class="btn btn-lg btn-warning" href="https://www.dvnm.tech/rand">Random List Generator 1.0</a></p>
         <p class="lead">Simple AJAX with Yii Controller</p>
                 <?php
-                //Yii::$app->sc->setStart(__LINE__);
                 echo Html::a('Click me', ['ajax/rand100'], [
                                 'class' => 'btn btn-lg btn-warning',
                                 'id' => 'rand_ajax',
