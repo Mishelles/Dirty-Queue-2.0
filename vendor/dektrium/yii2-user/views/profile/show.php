@@ -78,39 +78,58 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
       </tr>
     </thead>
     <tbody>
-    <?php
+<?php
     $works=Profile::getWorkList();
     $user_works=Profile::getUserWorks($profile->user->id);
-    foreach($works as $work){
+    foreach($works as $work):
         $status=0;
         $key=array_search($work['id'], array_column($user_works, 'id_work'));
 	if($key!==FALSE){
             $status=$user_works[$key]['status'];
         }
-        echo '<tr><td>' . $work['subject'] . '</td><td>' . $work['name'] . ' ' . $work['number'] . '</td><td id="status_' . $work['id'] . '">' . $status . '</td>';
+?>
+      <tr>
+        <td>
+          <?= Html::encode($work['subject'])?>
+
+        </td>
+        <td>
+          <?= Html::encode($work['name'] . ' ' . $work['number'])?>
+        </td>
+        <td id="status_<?echo $work['id']?>">
+          <?= Html::encode($status)?>
+        </td>
+        <td>
+<?php
         if(Yii::$app->user->id==$profile->user->id){
-            echo '<td>';
-            echo Html::a('Ready', ['/ajax/action?id=' . $work['id'] . '&status=1'], [
+?>
+          <?= Html::a('Ready', ['/ajax/action?id=' . $work['id'] . '&status=1'], [
                             'class' => 'btn btn-primary td-button',
                             'id' => 'ready_' . $work['id'],
                             'data-on-done' => 'actionDone',
                     ]
             );
-            $this->registerJs("$('#ready_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);
-            echo Html::a('Done', ['/ajax/action?id=' . $work['id'] . '&status=2'], [
+            $this->registerJs("$('#ready_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);?>
+
+          <?= Html::a('Done', ['/ajax/action?id=' . $work['id'] . '&status=2'], [
                             'class' => 'btn btn-success td-button',
                             'id' => 'done_' . $work['id'],
                             'data-on-done' => 'actionDone',
                     ]
             );
-            $this->registerJs("$('#done_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);
-            echo '</td></tr>';
-            //echo '<td><button type="button" class="btn btn-warning td-button">Ready</button><button type="button" class="btn btn-success td-button">Done</button></td></tr>';
+            $this->registerJs("$('#done_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);?>
+
+        </td>
+<?php
         }else{
-            echo "<td>Can't edit</td></tr>";
-        }
-    }
-    ?>
+?>
+          Can't edit
+        </td>
+<?php }?>
+      </tr>
+<?php
+    endforeach;
+?>
     </tbody>
   </table>
 </div>
