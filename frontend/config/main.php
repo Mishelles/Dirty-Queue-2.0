@@ -56,6 +56,25 @@ return [
             'as frontend' => 'dektrium\user\filters\FrontendFilter',
             'enableUnconfirmedLogin' => true,
             'enableFlashMessages' => false,
+            'controllerMap' => [
+                'security' => [
+                    'class' => \dektrium\user\controllers\SecurityController::className(),
+                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN => function ($e) {
+                        Yii::$app->response->redirect('/user/' . Yii::$app->user->identity->id);
+                        Yii::$app->end();
+                    }
+                ],
+                'registration' => [
+                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
+                        $user = \dektrium\user\models\User::findOne(['username'=>$e->form->username, 'email'=>$e->form->email]);
+                        if ($user) {
+                            Yii::$app->user->switchIdentity($user);
+                        }
+                        Yii::$app->response->redirect('/user/' . Yii::$app->user->identity->id);
+                    },
+                ],
+            ],
         ],
     ],
 ];

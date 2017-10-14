@@ -58,9 +58,13 @@ class AjaxController extends Controller //BaseController
                         $connection->open();
 
                         if(!empty($rows)){
-                            $connection->createCommand()
-                            ->update('users_work_status', ['status' => $status], 'id = ' . $rows[0]['id'])
-                            ->execute();
+                           // if($rows[0]['status']>$status){
+                            //    $status=-1;
+                           // }else{
+                                $connection->createCommand()
+                                ->update('users_work_status', ['status' => $status], 'id = ' . $rows[0]['id'])
+                                ->execute();
+                            //}
                         }else{
                             $connection->createCommand()
                             ->insert('users_work_status', ['id_user' => Yii::$app->user->id, 'id_work' => $id, 'status' => $status])
