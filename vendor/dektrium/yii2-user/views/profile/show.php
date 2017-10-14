@@ -94,7 +94,7 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
 
         </td>
         <td>
-          <?= Html::encode($work['name'] . ' ' . $work['number'])?>
+          <?= Html::encode($work['name'])?>
 
         </td>
         <td id="status_<?echo $work['id']?>">
