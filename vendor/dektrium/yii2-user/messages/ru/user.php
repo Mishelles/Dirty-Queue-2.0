@@ -52,6 +52,7 @@ return [
     'Awesome, almost there. Now you need to click the confirmation link sent to your new email address' => 'Почти готово! Осталось перейти по ссылке, отправленной на ваш новый почтовый адрес',
     'Awesome, almost there. Now you need to click the confirmation link sent to your old email address' => 'Почти готово! Осталось перейти по ссылке, отправленной на ваш старый почтовый адрес',
     'Bio' => 'О себе',
+    'Info' => 'Инфо',
     'Block' => 'Блокировать',
     'Block status' => 'Блокировка',
     'Blocked at {0, date, MMMM dd, YYYY HH:mm}' => 'Заблокирован  {0, date, dd MMMM, YYYY HH:mm}',

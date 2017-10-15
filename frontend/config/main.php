@@ -8,11 +8,25 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'language' => 'ru-RU',
     'name' => 'Dark Inc.',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+'i18n' => [
+        'translations' => [
+            'app*' => [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@frontend/messages',
+                'sourceLanguage' => 'en-US',
+                'fileMap' => [
+                    'app'       => 'app.php',
+                    'app/error' => 'error.php',
+                ],
+            ],
+        ],
+    ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

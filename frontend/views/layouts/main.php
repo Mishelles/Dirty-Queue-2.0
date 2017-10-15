@@ -40,17 +40,17 @@ AppAsset::register($this);
         //['label' => 'About', 'url' => ['/site/about']],
         //['label' => 'Contact', 'url' => ['/site/contact']],
     ];
-    $menuItems[] = ['label' => 'Queue', 'url' => ['/rand/']];
+    $menuItems[] = ['label' => Yii::t('app', 'Queue'), 'url' => ['/rand/']];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'Profile', 'url' => ['/user/' . Yii::$app->user->identity->id]];
-        $menuItems[] = ['label' => 'Settings', 'url' => ['/user/settings/']];
+        $menuItems[] = ['label' => Yii::t('app', 'Profile'), 'url' => ['/user/' . Yii::$app->user->identity->id]];
+        $menuItems[] = ['label' => Yii::t('app', 'Settings'), 'url' => ['/user/settings/']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

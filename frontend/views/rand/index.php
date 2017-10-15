@@ -9,7 +9,7 @@ $this->title = Yii::$app->name;
 
     <div class="jumbotron">
 
-        <p class="lead">Rand subjects list.</p>
+        <p class="lead"><?= Yii::t('app', 'Subject list');?></p>
 <?php
 $rows = (new \yii\db\Query())
 ->select(['subject'])

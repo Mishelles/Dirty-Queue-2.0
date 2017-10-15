@@ -71,17 +71,17 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
 <br>
 <div class="input-group">
   <span class="input-group-addon" id="sizing-addon2"><i class="mdi mdi-18px mdi-magnify"></i></span>
-  <input type="text" id="dosearch" class="form-control" placeholder="Search here..." onkeyup="doSearch()" aria-describedby="sizing-addon2">
+  <input type="text" id="dosearch" class="form-control" placeholder=<?= '"' . Yii::t('app', 'Search here...') . '"';?> onkeyup="doSearch()" aria-describedby="sizing-addon2">
 </div>
 <br>
 
 <table id="works" class="table table-bordered">
     <thead>
       <tr>
-        <th>Subject</th>
-        <th>Work</th>
-        <th>Status</th>
-        <th>Edit</th>
+        <th><?= Yii::t('app', 'Subject');?></th>
+        <th><?= Yii::t('app', 'Work');?></th>
+        <th><?= Yii::t('app', 'Status');?></th>
+        <th><?= Yii::t('app', 'Actions');?></th>
       </tr>
     </thead>
     <tbody>
@@ -113,7 +113,7 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
 <?php
         if(Yii::$app->user->id==$profile->user->id){
 ?>
-          <?= Html::a('Ready', ['/ajax/action?id=' . $work['id'] . '&status=1'], [
+          <?= Html::a(Yii::t('app', 'Ready'), ['/ajax/action?id=' . $work['id'] . '&status=1'], [
                             'class' => 'btn-primary td-btn',
                             'id' => 'ready_' . $work['id'],
                             'data-on-done' => 'actionDone',
@@ -121,14 +121,14 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
             );
             $this->registerJs("$('#ready_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);?>
 
-          <?= Html::a('Done', ['/ajax/action?id=' . $work['id'] . '&status=2'], [
+          <?= Html::a(Yii::t('app', 'Done'), ['/ajax/action?id=' . $work['id'] . '&status=2'], [
                             'class' => 'btn-success td-btn',
                             'id' => 'done_' . $work['id'],
                             'data-on-done' => 'actionDone',
                     ]
             );
             $this->registerJs("$('#done_" . $work['id'] . "').click(handleAjaxLink);", \yii\web\View::POS_READY);?>
-          <?= Html::a('Reset', ['/ajax/action?id=' . $work['id'] . '&status=0'], [
+          <?= Html::a(Yii::t('app', 'Reset'), ['/ajax/action?id=' . $work['id'] . '&status=0'], [
                             'class' => 'btn-danger td-btn',
                             'id' => 'reset_' . $work['id'],
                             'data-on-done' => 'actionDone',

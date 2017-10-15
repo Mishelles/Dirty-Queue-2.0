@@ -9,7 +9,7 @@ $this->title = Yii::$app->name;
 
     <div class="jumbotron">
 
-        <p class="lead">Rand queue for <?= Html::encode($subject); ?></p>
+        <p class="lead"><?= Yii::t('app', 'Queue for ');?><?= Html::encode($subject); ?></p>
 <?php
 
 
@@ -30,8 +30,8 @@ echo "Something went wrong";//!IMPORTANT! Get and display time before random if 
           <thead>
             <tr>
               <th class="text-center">#</th>
-              <th class="text-center">Student</th>
-              <th class="text-center">Work</th>
+              <th class="text-center"><?= Yii::t('app', 'Name');?></th>
+              <th class="text-center"><?= Yii::t('app', 'Work');?></th>
             </tr>
           </thead>
           <tbody>
