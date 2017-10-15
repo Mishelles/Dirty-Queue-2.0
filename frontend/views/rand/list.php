@@ -53,5 +53,6 @@ empty($profile->name) ? $user=$profile->user->username : $user=$profile->name;?>
           </tbody>
         </table>
 </div>
+</div>
         </div>
 </div>

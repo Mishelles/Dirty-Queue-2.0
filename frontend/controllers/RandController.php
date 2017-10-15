@@ -14,10 +14,10 @@ class RandController extends Controller //BaseController
         }
 
         public function actionGen($subject, $password){
-               //if($password==Yii::$app->params['gen_pass']){
-                   return $this->render('generate', ['subject' => $subject]);
-               /*}else{
+               if($password==Yii::$app->params['gen_pass']){
+                   return $this->render('generate', ['subject' => $subject, 'password' => $password]);
+               }else{
                    return $this->render('index');
-               }*/
+               }
         }
 }

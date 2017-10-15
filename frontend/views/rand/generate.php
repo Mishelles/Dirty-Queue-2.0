@@ -11,7 +11,7 @@ $this->title = Yii::$app->name;
 
         <p class="lead">Generated queue for <?= Html::encode($subject); ?></p>
 <?php
-
+if($password==Yii::$app->params['gen_pass']){
 $counter = 0;
 $user_list = [];
 
@@ -64,6 +64,9 @@ foreach($rows as $row){
             $user_list[$counter++] = $user['id_user'];
         }
     }
+}
+}else{
+echo 'Something went wrong';
 }
 ?>
         </div>

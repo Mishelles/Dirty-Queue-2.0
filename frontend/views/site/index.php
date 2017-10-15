@@ -7,12 +7,12 @@ $this->title = Yii::$app->name;
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Hello World!</h1>
+        <h1><?= Yii::t('app', 'Dirty Queue V2.0');?></h1>
 
-        <p class="lead">Simple Yii2 app with yii2-user extension.</p>
+        <p class="lead"><?= Yii::t('app', 'Random queue with priority');?></p>
 
        <p><a class="btn btn-lg btn-warning" href="https://www.dvnm.tech/rand">Random List Generator 1.0</a></p>
-        <p class="lead">Simple AJAX with Yii Controller</p>
+        <p class="lead"><?= Yii::t('app', 'Simple AJAX with Yii Controller');?></p>
                 <?php
                 echo Html::a('Click me', ['ajax/rand100'], [
                                 'class' => 'btn btn-lg btn-warning',
