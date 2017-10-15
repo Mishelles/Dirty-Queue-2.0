@@ -2,8 +2,28 @@ html,
 body {
     height: 100%;
 }
+.flexbox {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.td-btn{
+    display: inline-block;
+    min-width: 50px;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: 10px;
+    width: 32%;
+}
 .td-button{
-    width: 49%;
+    width: 32%;
 }
 th{
     white-space: nowrap;

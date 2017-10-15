@@ -47,9 +47,8 @@ var ajaxCallbacks = {
 	},
 
         'actionDone': function (response) {
-            var statuses = ["Не готово", "Готово", "Сдано"];
             if(response.status!=-1){
-                $('#status_' + response.id).html(statuses[response.status]);
+                $('#status_' + response.id).html(response.status);
             }else{
                 alert("Can't set status below current");
             }

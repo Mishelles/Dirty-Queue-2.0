@@ -50,22 +50,19 @@ class AjaxController extends Controller //BaseController
                         ->andWhere(['=', 'id_work', $id])
                         ->limit(1)
                         ->all();
+                        $connection = new \yii\db\Connection([
+                            'dsn' => Yii::$app->db->dsn,
+                            'username' => Yii::$app->db->username,
+                            'password' => Yii::$app->db->password,
+                        ]);
+                        $connection->open();
+
                         if(!empty($rows)){
-                           // if($rows[0]['status']>$status){
-                            //    $status=-1;
-                           // }else{
-                                if($status!=0){
-                                Yii::$app->db->createCommand()
+                                $connection->createCommand()
                                 ->update('users_work_status', ['status' => $status], 'id = ' . $rows[0]['id'])
                                 ->execute();
-                                }else{
-                                Yii::$app->db->createCommand()
-                                ->delete('users_work_status', ['id' => $rows[0]['id']])
-                                ->execute();
-                                }
-                            //}
                         }else{
-                            Yii::$app->db->createCommand()
+                            $connection->createCommand()
                             ->insert('users_work_status', ['id_user' => Yii::$app->user->id, 'id_work' => $id, 'status' => $status])
                             ->execute();
                         }

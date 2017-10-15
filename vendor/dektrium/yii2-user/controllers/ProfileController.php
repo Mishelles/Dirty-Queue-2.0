@@ -45,6 +45,11 @@ class ProfileController extends Controller
                     Yii::$app->assetManager->getPublishedUrl($this->jsFile),
                     ['yii\web\YiiAsset'] // depends
             );
+            Yii::$app->assetManager->publish('@frontend/js/search.js');
+            $this->getView()->registerJsFile(
+                    Yii::$app->assetManager->getPublishedUrl('@frontend/js/search.js'),
+                    ['yii\web\YiiAsset'] // depends
+            );
     }
     public function __construct($id, $module, Finder $finder, $config = [])
     {

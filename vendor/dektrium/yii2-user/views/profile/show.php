@@ -70,7 +70,7 @@ $this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesigni
 
 <br>
 <div class="input-group">
-  <span class="input-group-addon" id="sizing-addon2">?</span>
+  <span class="input-group-addon" id="sizing-addon2"><i class="mdi mdi-18px mdi-magnify"></i></span>
   <input type="text" id="dosearch" class="form-control" placeholder="Search here..." onkeyup="doSearch()" aria-describedby="sizing-addon2">
 </div>
 <br>

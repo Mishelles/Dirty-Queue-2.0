@@ -9,39 +9,24 @@ $this->title = Yii::$app->name;
 
     <div class="jumbotron">
 
-        <p class="lead">Rand page.</p>
+        <p class="lead">Rand subjects list.</p>
 <?php
-$subject = 'ВычМат';
-$counter = 0;
-$user_list = [];
 $rows = (new \yii\db\Query())
-->select(['id'])
+->select(['subject'])
 ->from('work_list')
-->where(['=', 'subject', $subject])
+->distinct()
 ->orderBy('number DESC')
 ->all();
-
-foreach($rows as $row){
-    $users = (new \yii\db\Query())
-    ->select(['id_user'])
-    ->from('users_work_status')
-    ->where(['=', 'id_work', $row['id']])
-    //->andWhere(['=', 'status', 1])
-    ->all();
-    shuffle($users);
-
-    foreach($users as $user){
-        if(array_search($user['id_user'], $user_list)===FALSE){
-            $profile = Profile::find()->where(['user_id' => $user['id_user']])->one();
-            if(!empty($profile->name)){
-                echo $profile->name . ' id_work ' . $row['id'] . ' id_user ' . $user['id_user'] . '<br>';
-            }else{
-                echo $profile->user->username . ' id_work' . $row['id'] . ' id_user ' . $user['id_user'] . '<br>';
-            }
-            $user_list[$counter++] = $user['id_user'];
-        }
-    }
-}
+foreach($rows as $row):
 ?>
-        </div>
+    <div class="row">
+    <?= Html::a($row['subject'], ['/rand/' . $row['subject']], [
+                        'class' => 'lead',
+                        ]
+                );
+    ?>
+    </div>
+    <br>
+<?php endforeach;?>
+    </div>
 </div>

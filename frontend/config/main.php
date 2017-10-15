@@ -16,6 +16,10 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        'assetManager' => [
+            'class' => 'yii\web\AssetManager',
+            'appendTimestamp' => true,
+        ],
         /*'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -43,6 +47,16 @@ return [
             'rules' => [
                 'site/signup' => 'user/registration/register',
                 'site/login' => 'user/security/login',
+                [
+                    'pattern' => 'rand/<subject>',
+                    'route' => 'rand/index',
+                    'defaults' => ['subject' => 'list'],
+                ],
+                [
+                    'pattern' => 'rand/gen/<subject>/<password>',
+                    'route' => 'rand/gen',
+                    'defaults' => ['subject' => '', 'password' => ''],
+                ],
             ],
         ],
         'sc' => [
