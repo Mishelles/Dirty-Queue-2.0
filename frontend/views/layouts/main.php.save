@@ -40,14 +40,16 @@ AppAsset::register($this);
         //['label' => 'About', 'url' => ['/site/about']],
         //['label' => 'Contact', 'url' => ['/site/contact']],
     ];
-    $menuItems[] = ['label' => Yii::t('app', 'Queue'), 'url' => ['/rand/']];
+    if(Yii::$app->user->id==1){
+        $menuItems[] = ['label' => Yii::t('app', 'Queue'), 'url' => ['/rand/']];
+    }
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => Yii::t('app', 'Signup'), 'url' => ['/site/signup']];
         $menuItems[] = ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']];
     } else {
         $menuItems[] = ['label' => Yii::t('app', 'Profile'), 'url' => ['/user/' . Yii::$app->user->identity->id]];
         $menuItems[] = ['label' => Yii::t('app', 'Settings'), 'url' => ['/user/settings/']];
-       if(Yii::$app->user->id==1){$menuItems[] =\webzop\notifications\widgets\Notifications::widget();}
+        $menuItems[] =\webzop\notifications\widgets\Notifications::widget();
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

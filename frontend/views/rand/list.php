@@ -2,8 +2,19 @@
 
 /* @var $this yii\web\View */
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 use dektrium\user\models\Profile;
-$this->title = Yii::$app->name;
+$this->title = Html::encode($subject);
+echo Breadcrumbs::widget([
+    'itemTemplate' => "<li>{link}</li>\n", // template for all links
+    'links' => [
+        [
+            'label' => Yii::t('app', 'Subject list'),
+            'url' => ['/rand'],
+        ],
+        Html::encode($subject),
+    ],
+]);
 ?>
 <div class="site-index">
 
@@ -17,7 +28,7 @@ $rows = (new \yii\db\Query())
 ->select(['id_user', 'work'])
 ->from('queue')
 ->where(['=', 'subject', $subject])
-->orderBy('pos ASC')
+->orderBy('pos DESC')
 ->all();
 $i=1;
 if(empty($rows)){

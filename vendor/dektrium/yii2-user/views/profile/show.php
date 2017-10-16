@@ -11,7 +11,6 @@
 
 use yii\helpers\Html;
 use dektrium\user\helpers\Profile;
-
 /**
  * @var \yii\web\View $this
  * @var \dektrium\user\models\Profile $profile
@@ -19,7 +18,6 @@ use dektrium\user\helpers\Profile;
 
 $this->title = empty($profile->name) ? Html::encode($profile->user->username) : Html::encode($profile->name);
 $this->params['breadcrumbs'][] = $this->title;
-$this->registerCssFile('//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css');
 ?>
 <div class="row profile">
     <div class="col-xs-12 col-sm-6 col-md-6">

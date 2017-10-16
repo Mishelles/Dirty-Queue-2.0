@@ -13,6 +13,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        '//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css',
     ];
     public $js = [
     ];

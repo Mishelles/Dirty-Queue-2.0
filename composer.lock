@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "797c3066dee0120776fd507588df523a",
+    "content-hash": "d30199090ea3f131f052ace026893986",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -466,6 +466,51 @@
                 "mailer"
             ],
             "time": "2017-05-01T15:54:03+00:00"
+        },
+        {
+            "name": "webzop/yii2-notifications",
+            "version": "0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webzop/yii2-notifications.git",
+                "reference": "bfa81f165fa47d8bf02c143ec7926f608dd1dbcb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webzop/yii2-notifications/zipball/bfa81f165fa47d8bf02c143ec7926f608dd1dbcb",
+                "reference": "bfa81f165fa47d8bf02c143ec7926f608dd1dbcb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "webzop\\notifications\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "webzop\\notifications\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Gonçalo Esteves",
+                    "email": "goncalo.p.esteves@gmail.com",
+                    "homepage": "https://webzop.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Notifications module for Yii2",
+            "keywords": [
+                "yii2",
+                "yii2-manage-notifications",
+                "yii2-notifications",
+                "yii2-notifications-module"
+            ],
+            "time": "2017-10-11T11:45:10+00:00"
         },
         {
             "name": "yiisoft/yii2",

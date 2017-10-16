@@ -3,7 +3,11 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 use dektrium\user\models\Profile;
+use common\models\User;
+use frontend\notifications\QueueNotification;
 $this->title = Yii::$app->name;
+$user = User::findOne(1);
+QueueNotification::create(QueueNotification::KEY_QUEUE_GENERATED, ['queue' => $subject])->setUserId($user->id)->send();
 ?>
 <div class="site-index">
 
@@ -14,7 +18,7 @@ $this->title = Yii::$app->name;
 if($password==Yii::$app->params['gen_pass']){
 $counter = 0;
 $user_list = [];
-
+$total = 0;
 Yii::$app->db->createCommand("DELETE FROM `queue` WHERE `subject`='" . $subject . "' AND `status`>0")
 ->execute();
 
@@ -22,7 +26,7 @@ $rows = (new \yii\db\Query())
 ->select(['id', 'name'])
 ->from('work_list')
 ->where(['=', 'subject', $subject])
-->orderBy('number DESC')
+->orderBy('number ASC')
 ->all();
 
 $pos=(new \yii\db\Query())
