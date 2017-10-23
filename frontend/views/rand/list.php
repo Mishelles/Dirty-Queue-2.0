@@ -45,7 +45,7 @@ echo Breadcrumbs::widget([
             $datetime1 = new DateTime('now');
             $datetime2 = new DateTime(str_replace("this", "next", $rows[0]['date_start']));
             $interval = $datetime1->diff($datetime2);
-            echo $interval->format('Очередь будет сгенерирована через %d дн. %h:%i:%s');
+            echo $interval->format('Очередь будет сгенерирована через %d дн. %h ч. %i мин. %s сек.');
           }else{
            $datetime1 = new DateTime('now');
            $datetime2 = new DateTime($rows[0]['date_start']);
