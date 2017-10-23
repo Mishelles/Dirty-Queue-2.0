@@ -18,5 +18,6 @@ return [
     'Done' => 'Сдано',
     'Reset' => 'Сброс',
     'Dirty Queue V2.0' => 'Очередь V2.0',
+    "Queue doesn't exists" => 'Такой очереди не существует',
 ]
 ?>
