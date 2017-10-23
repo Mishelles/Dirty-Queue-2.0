@@ -1,22 +1,32 @@
 <?php
 
-/* @var $this yii\web\View */
-use yii\helpers\Html;
+namespace console\controllers;
+
+use Yii;
+use yii\console\Controller;
 use dektrium\user\models\Profile;
 use common\models\User;
-use frontend\notifications\QueueNotification;
-$this->title = Yii::$app->name;
-$user = User::findOne(1);
-QueueNotification::create(QueueNotification::KEY_QUEUE_GENERATED, ['queue' => $subject, 'icon' => 'mdi-format-list-numbers'])->setUserId($user->id)->send();
-?>
-<div class="site-index">
 
-    <div class="jumbotron">
-
-        <p class="lead">Generated queue for <?= Html::encode($subject); ?></p>
-<?php
-if($password==Yii::$app->params['gen_pass']){
-$counter = 0;
+class CronController extends Controller
+{
+    public $message, $subject;
+    
+    public function options($actionID)
+    {
+        return ['message', 'subject'];
+    }
+    
+    public function optionAliases()
+    {
+        return ['m' => 'message', 's' => 'subject'];
+    }
+    
+    public function actionIndex()
+    {
+        echo $this->message . "\n";
+        $user = User::findOne(1);
+        $counter = 0;
+        $subject = $this->subject;
 $user_list = [];
 $total = 0;
 Yii::$app->db->createCommand("DELETE FROM `queue` WHERE `subject`='" . $subject . "' AND `status`>0")
@@ -61,17 +71,13 @@ foreach($rows as $row){
             ->execute();
             $pos++;
             if(!empty($profile->name)){
-                echo $profile->name . ' id_work ' . $row['id'] . ' id_user ' . $user['id_user'] . '<br>';
+                echo $counter+1 . ". " . $profile->name . "\n";
             }else{
-                echo $profile->user->username . ' id_work ' . $row['id'] . ' id_user ' . $user['id_user'] . '<br>';
+                echo $counter+1 . ". " . $profile->user->username . "\n";
             }
             $user_list[$counter++] = $user['id_user'];
         }
     }
 }
-}else{
-echo 'Something went wrong';
+    }
 }
-?>
-        </div>
-</div>
